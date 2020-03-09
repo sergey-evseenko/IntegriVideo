@@ -5,11 +5,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.ChatPage;
+import pages.FileUploadModal;
+import pages.SettingsModal;
 
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     ChatPage chatPage;
+    SettingsModal settingsModal;
+    FileUploadModal fileUploadModal;
     private WebDriver driver;
 
     @BeforeMethod
@@ -20,6 +24,8 @@ public class BaseTest {
         driver.manage().window().maximize();
 
         chatPage = new ChatPage(driver);
+        settingsModal = new SettingsModal(driver);
+        fileUploadModal = new FileUploadModal(driver);
     }
 
     @AfterMethod(alwaysRun = true)

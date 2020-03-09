@@ -12,47 +12,27 @@ public class ChatTests extends BaseTest {
         chatPage.writeText("Test");
         chatPage.clickSend();
         chatPage.messageShouldExist(0, "Test");
-
     }
 
     @Test
-    public void inviteCheck() {
+    public void verifyInviteLink() {
         chatPage.openPage();
-        chatPage.inviteClick();
+        chatPage.inviteButtonClick();
         chatPage.verifyBufferLink();
-
-    }
-
-    @Test
-    public void fileUpload() {
-        chatPage.openPage();
-        chatPage.fileUpload("\\src\\main\\resources\\my_file.pdf");
-        chatPage.verifyFile("my_file.pdf (29kb)");
-
-    }
-
-    @Test
-    public void filesUpload() {
-        chatPage.openPage();
-        chatPage.fileUpload("\\src\\main\\resources\\my_file.pdf");
-        chatPage.verifyFile("my_file.pdf (29kb)");
-
     }
 
     @Test
     public void sendMessageByEnter() {
         chatPage.openPage();
-        chatPage.sedMessageByEnter("AutoTests");
-        chatPage.verifyMessage("AutoTests");
-
+        chatPage.sedMessageByEnter(message);
+        chatPage.verifyMessage(message);
     }
 
     @Test
     public void sendMessageByButton() {
         chatPage.openPage();
-        chatPage.sendMessageByButton("AutoTests");
-        chatPage.verifyMessage("AutoTests");
-
+        chatPage.sendMessageByButton(message);
+        chatPage.verifyMessage(message);
     }
 
     @Test
@@ -62,16 +42,16 @@ public class ChatTests extends BaseTest {
         chatPage.openPage();
         chatPage.sendMessageByButton(longMessage);
         chatPage.verifyMessage(longMessage);
-
     }
 
     @Test
     public void sendLink() {
-        String link = "https://dev.integrivideo.com/";
+        String link = "https://www.youtube.com/";
         chatPage.openPage();
         chatPage.sendMessageByButton(link);
-        chatPage.verifyMessage(link);
-
+        chatPage.verifyLink("www.youtube.com\n" +
+                "YouTube\n" +
+                "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.");
     }
 
     @Test
@@ -80,7 +60,6 @@ public class ChatTests extends BaseTest {
         chatPage.openPage();
         chatPage.sendMessageByButton(code);
         chatPage.verifyMessage(code);
-
     }
 
     @Test
@@ -95,7 +74,6 @@ public class ChatTests extends BaseTest {
             e.printStackTrace();
         }
         chatPage.verifyMessage(updatedmessage + message);
-
     }
 
     @Test
@@ -104,7 +82,6 @@ public class ChatTests extends BaseTest {
         chatPage.sendMessageByButton(message);
         chatPage.editMessageWithRemove(message);
         chatPage.verifyErrorMessage("Message cannot be empty!");
-
     }
 
     @Test
@@ -112,42 +89,19 @@ public class ChatTests extends BaseTest {
         chatPage.openPage();
         chatPage.sendMessageByButton(message);
         chatPage.deleteMessage();
-    }
-
-    @Test
-    public void changeName() {
-        chatPage.openPage();
-        chatPage.changeName();
-
-    }
-
-    @Test
-    public void changeEmail() {
-        chatPage.openPage();
-        chatPage.changeEmail();
-
-    }
-
-    @Test
-    public void changePhotoUrl() {
-        chatPage.openPage();
-        chatPage.changePhotUrl();
-
+        chatPage.verifyDeletedMessage("removed...");
     }
 
     @Test
     public void codeButton() {
         chatPage.openPage();
-        chatPage.copyCode();
-
+        chatPage.copyAndVerifyCode();
     }
 
     @Test
     public void messagesLimit() {
         chatPage.openPage();
-        chatPage.checkLimit();
-
+        chatPage.sendMessagesAndVerifyLimit();
     }
-
 
 }
