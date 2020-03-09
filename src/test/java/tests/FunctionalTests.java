@@ -6,13 +6,10 @@ public class FunctionalTests extends BaseTest {
 
 
     @Test
-    public void siugnUpVerification() {
-
+    public void signUpVerification() {
         signUpPage.openPage("https://dev.integrivideo.com/signup");
         signUpPage.providingDataAndClicking("test5@gmail.com", "Alfie_07061999");
         signUpPage.messageVerification("Message with instructions was sent");
-
     }
-
 
 }

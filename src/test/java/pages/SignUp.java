@@ -22,7 +22,6 @@ public class SignUp extends BasePage {
     public void messageVerification(String expectedMessage) {
 
         driver.findElement(By.xpath("//*[text()='" + expectedMessage + "']")).getText();
-
     }
 
 
