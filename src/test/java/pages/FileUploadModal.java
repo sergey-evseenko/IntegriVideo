@@ -10,8 +10,13 @@ public class FileUploadModal extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
+    public BasePage isPageOpened() {
+        return null;
+    }
+
+    public FileUploadModal openPage() {
         driver.get("https://dev.integrivideo.com/demo/chat/new");
+        return this;
     }
 
     public void fileUpload(String url) {
@@ -22,6 +27,6 @@ public class FileUploadModal extends BasePage {
 
     public void verifyFile(String validName) {
         String fileName = driver.findElement(By.cssSelector(".integri-chat-message-attachment-file-name")).getText();
-        assertEquals(fileName, validName, "File upload error");
+        assertEquals(fileName, validName, "Sergey Evseenko Error!");
     }
 }
