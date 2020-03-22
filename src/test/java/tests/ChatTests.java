@@ -17,7 +17,7 @@ public class ChatTests extends BaseTest {
     @Test
     public void verifyInviteLink() {
         chatPage.openPage();
-        chatPage.inviteButtonClick();
+        chatPage.clickInviteButton();
         chatPage.verifyBufferLink();
     }
 
@@ -88,7 +88,7 @@ public class ChatTests extends BaseTest {
     public void deleteMessage() {
         chatPage.openPage();
         chatPage.sendMessageByButton(message);
-        chatPage.deleteMessage();
+        chatPage.deleteMessage(1);
         chatPage.verifyDeletedMessage("removed...");
     }
 
@@ -101,7 +101,7 @@ public class ChatTests extends BaseTest {
     @Test
     public void messagesLimit() {
         chatPage.openPage();
-        chatPage.sendMessagesAndVerifyLimit();
+        chatPage.sendMessagesAndVerifyLimit(11);
     }
 
 }

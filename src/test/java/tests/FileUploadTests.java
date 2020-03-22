@@ -13,15 +13,4 @@ public class FileUploadTests extends BaseTest {
         fileUploadModal.verifyFile("my_file.pdf (29kb)");
     }
 
-    @Test
-    public void verifyFilesUpload() {
-        fileUploadModal.openPage();
-        fileUploadModal.fileUpload(File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "my_file.pdf");
-        fileUploadModal.verifyFile("my_file.pdf (39kb)");
-    }
-
-    @Test
-    public void addAndRemovePaymentMethod() {
-
-    }
 }

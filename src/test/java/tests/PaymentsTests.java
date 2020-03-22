@@ -22,7 +22,7 @@ public class PaymentsTests extends BaseTest {
                 .addCard(card)
                 .verifyAddedCard("424242******4242 (Visa)")
                 .removeCard(1)
-                .verifyTahtNumberOfCardsDecreased();
+                .verifyThatNumberOfCardsDecreased();
     }
 
 }

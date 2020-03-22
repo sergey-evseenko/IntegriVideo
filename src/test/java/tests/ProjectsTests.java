@@ -51,7 +51,7 @@ public class ProjectsTests extends BaseTest {
                 .addDomain(domainName)
                 .verifyaddedDomain(domainName)
                 .removeDomain()
-                .verifyREmovedDomain();
+                .verifyRemovedDomain();
     }
 
     @Test(priority = 96)

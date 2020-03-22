@@ -18,6 +18,18 @@ public class ProjectPage extends BasePage {
     @FindBy(linkText = "Edit")
     WebElement editButton;
 
+    @FindBy(name = "name")
+    WebElement projectName;
+
+    @FindBy(css = "textarea")
+    WebElement projectDescription;
+
+    @FindBy(name = "domains[]")
+    WebElement projectDomains;
+
+    By domainsLocator = By.name("domains[]");
+
+
     int numberOfElementsBefore, numberOfElementsAfter;
     By addProject = By.cssSelector(".iv-icon-file-add");
 
@@ -38,9 +50,9 @@ public class ProjectPage extends BasePage {
     public ProjectPage creteProject(Project project) {
         numberOfElementsBefore = driver.findElements(By.cssSelector(".project")).size();
         driver.findElement(By.xpath("//*[text()='Add project']")).click();
-        driver.findElement(By.name("name")).sendKeys(project.getName());
-        driver.findElement(By.cssSelector("textarea")).sendKeys(project.getDescription());
-        driver.findElement(By.name("domains[]")).sendKeys(project.getDomain());
+        projectName.sendKeys(project.getName());
+        projectDescription.sendKeys(project.getDescription());
+        projectDomains.sendKeys(project.getDomain());
         List<WebElement> buttons = driver.findElements(By.cssSelector(".btn"));
         buttons.get(4).click();
         return this;
@@ -52,39 +64,38 @@ public class ProjectPage extends BasePage {
         return this;
     }
 
-    public void openProject() {
+    public void openProject(int index) {
         List<WebElement> projects = driver.findElements(By.cssSelector(".project"));
-        projects.get(projects.size() - 2).click();
+        projects.get(index).click();
     }
 
-    public void openProjectAndClickEdit() {
-        openProject();
+    public void openProjectAndClickEdit(int index) {
+        openProject(index);
         editButton.click();
     }
 
     public void clickUpdateProject() {
-        List<WebElement> buttons = driver.findElements(By.cssSelector(".btn"));
-        buttons.get(4).click();
+        driver.findElement(By.xpath("//*[text()='Update']")).click();
     }
 
 
     public ProjectPage editProject(Project project) {
-        openProjectAndClickEdit();
-        driver.findElement(By.name("name")).clear();
-        driver.findElement(By.name("name")).sendKeys(project.getName());
-        driver.findElement(By.cssSelector("textarea")).clear();
-        driver.findElement(By.cssSelector("textarea")).sendKeys(project.getDescription());
-        driver.findElement(By.name("domains[]")).clear();
-        driver.findElement(By.name("domains[]")).sendKeys(project.getDomain());
+        openProjectAndClickEdit(1);
+        projectName.clear();
+        projectName.sendKeys(project.getName());
+        projectDescription.clear();
+        projectDescription.sendKeys(project.getDescription());
+        projectDomains.clear();
+        projectDomains.sendKeys(project.getDomain());
         clickUpdateProject();
         return this;
     }
 
     public ProjectPage verifyUpdatedProject(Project project) {
-        openProjectAndClickEdit();
-        String actualName = driver.findElement(By.name("name")).getAttribute("value");
-        String actualDescription = driver.findElement(By.cssSelector("textarea")).getAttribute("value");
-        String actualDomain = driver.findElement(By.name("domains[]")).getAttribute("value");
+        openProjectAndClickEdit(1);
+        String actualName = projectName.getAttribute("value");
+        String actualDescription = projectDescription.getAttribute("value");
+        String actualDomain = projectDomains.getAttribute("value");
         assertEquals(actualName, project.getName(), "Updating Name Error!");
         assertEquals(actualDescription, project.getDescription(), "Updating description Error!");
         assertEquals(actualDomain, project.getDomain(), "Updating domain Error!");
@@ -92,23 +103,23 @@ public class ProjectPage extends BasePage {
     }
 
     public ProjectPage addDomain(String domainName) {
-        openProjectAndClickEdit();
-        List<WebElement> domains = driver.findElements(By.name("domains[]"));
+        openProjectAndClickEdit(1);
+        List<WebElement> domains = driver.findElements(domainsLocator);
         domains.get(domains.size() - 1).sendKeys(domainName);
         clickUpdateProject();
         return this;
     }
 
     public ProjectPage verifyaddedDomain(String expectedDomainName) {
-        openProjectAndClickEdit();
-        List<WebElement> domains = driver.findElements(By.name("domains[]"));
+        openProjectAndClickEdit(1);
+        List<WebElement> domains = driver.findElements(domainsLocator);
         String actualDomainName = domains.get(domains.size() - 2).getAttribute("value");
         assertEquals(actualDomainName, expectedDomainName, "Adding domain Error!");
         return this;
     }
 
     public ProjectPage removeDomain() {
-        List<WebElement> domains = driver.findElements(By.name("domains[]"));
+        List<WebElement> domains = driver.findElements(domainsLocator);
         numberOfElementsBefore = domains.size();
         List<WebElement> removeButton = driver.findElements(By.cssSelector(".input-group-text"));
         removeButton.get(removeButton.size() - 2).click();
@@ -116,20 +127,20 @@ public class ProjectPage extends BasePage {
         return this;
     }
 
-    public ProjectPage verifyREmovedDomain() {
-        openProjectAndClickEdit();
-        List<WebElement> domains = driver.findElements(By.name("domains[]"));
+    public ProjectPage verifyRemovedDomain() {
+        openProjectAndClickEdit(1);
+        List<WebElement> domains = driver.findElements(domainsLocator);
         numberOfElementsAfter = domains.size();
         assertEquals(numberOfElementsAfter, numberOfElementsBefore - 1, "Removing domain Error!");
         return this;
     }
 
     public ProjectPage createComponent(String componentName) {
-        openProject();
+        openProject(1);
         List<WebElement> components = driver.findElements(By.cssSelector(".component"));
         numberOfElementsBefore = components.size();
         components.get(components.size() - 1).click();
-        driver.findElement(By.name("name")).sendKeys(componentName);
+        projectName.sendKeys(componentName);
         List<WebElement> buttons1 = driver.findElements(By.cssSelector(".btn"));
         buttons1.get(4).click();
         return this;

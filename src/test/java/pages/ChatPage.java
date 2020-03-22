@@ -48,10 +48,10 @@ public class ChatPage extends BasePage {
         }
         List<WebElement> message = driver.findElements(By.cssSelector(".integri-chat-message-text"));
         boolean isExist = message.get(messageIndex).getText().equals(text);
-        assertTrue(isExist, "Message do not exist");
+        assertTrue(isExist, "Message doesn't exist");
     }
 
-    public void inviteButtonClick() {
+    public void clickInviteButton() {
         driver.findElement(By.id("invite-users-to-chat")).click();
     }
 
@@ -84,7 +84,7 @@ public class ChatPage extends BasePage {
     }
 
     public void editMessage(String currentMessage, String updatedMessage) {
-        driver.findElement(By.cssSelector(".iv-icon.iv-icon-pencil.integri-chat-edit-message")).click();
+        driver.findElement(By.cssSelector(".integri-chat-edit-message")).click();
         driver.findElement(By.xpath("//textarea[text()='" + currentMessage + "']")).sendKeys(updatedMessage + Keys.ENTER);
     }
 
@@ -99,8 +99,9 @@ public class ChatPage extends BasePage {
         assertEquals(actualMessage, expectedMessage, "Incorrect validation message!");
     }
 
-    public void deleteMessage() {
-        driver.findElement(By.cssSelector(".iv-icon.iv-icon-trash2.integri-chat-remove-message")).click();
+    public void deleteMessage(int index) {
+        List<WebElement> deleteButtons = driver.findElements(By.cssSelector(".integri-chat-remove-message"));
+        deleteButtons.get(index - 1).click();
         driver.switchTo().alert().accept();
     }
 
@@ -123,9 +124,9 @@ public class ChatPage extends BasePage {
         }
     }
 
-    public void sendMessagesAndVerifyLimit() {
+    public void sendMessagesAndVerifyLimit(int limit) {
 
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < limit; i++) {
             driver.findElement(By.cssSelector("textarea[placeholder='Start typing here']")).sendKeys("text");
             driver.findElement(By.cssSelector(".integri-chat-send-message")).click();
             wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".integri-chat-message-text"), i + 1));
