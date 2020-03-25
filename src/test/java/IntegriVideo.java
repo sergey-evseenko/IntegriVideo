@@ -14,6 +14,7 @@ public class IntegriVideo {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("https://dev.integrivideo.com/demo/5e5bee9a9884e44e06570457");
+
         //1. Button "Invite user to chat"
         webDriver.findElement(By.id("invite-users-to-chat"));
         //2. Component code

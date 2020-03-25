@@ -8,19 +8,27 @@
     <artifactId>IntegriVideo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.faker.version>0.18</java.faker.version>
+        <selenide.version>5.2.3</selenide.version>
+        <selenium.version>3.141.59</selenium.version>
+        <testng.version>7.0.0-beta1</testng.version>
+    </properties>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
+            <version>${selenium.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.1.0</version>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
 
