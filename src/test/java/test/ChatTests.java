@@ -1,4 +1,4 @@
-package tests;
+package test;
 
 import org.testng.annotations.Test;
 
@@ -6,7 +6,7 @@ public class ChatTests extends BaseTest {
 
     String message = "AutoTests";
 
-    @Test(invocationCount = 5)
+    @Test
     public void sendMessage() {
         chatPage.openPage();
         chatPage.writeText("Test");
@@ -102,6 +102,11 @@ public class ChatTests extends BaseTest {
     public void messagesLimit() {
         chatPage.openPage();
         chatPage.sendMessagesAndVerifyLimit(11);
+    }
+
+    @Test
+    public void runTest() {
+        System.out.println(System.getProperty("userName"));
     }
 
 }
