@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import models.Card;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -37,6 +38,7 @@ public class BillingPage extends BasePage {
         return this;
     }
 
+    @Step("Открытие страницы биллинга!")
     public BillingPage openPage() {
         driver.get("https://dev.integrivideo.com/app/billing");
         isPageOpened();

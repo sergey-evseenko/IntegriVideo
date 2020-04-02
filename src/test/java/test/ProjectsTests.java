@@ -1,5 +1,9 @@
 package test;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Link;
+import io.qameta.allure.TmsLink;
 import models.Project;
 import models.User;
 import org.testng.annotations.Test;
@@ -19,12 +23,14 @@ public class ProjectsTests extends BaseTest {
                 .verifyMessage("Message with instructions was sent");
     }
 
-    @Test(priority = 99)
+    @Test(priority = 99, description = "Creation of project")
+    @Description("Создаем проект и проверяем, что он создался корректно!")
+    @Link("https://app.stage.flowhealthlabs.com/")
+    @Issue("FS-1898")
+    @TmsLink("FS-1899")
     public void createProject() {
         Project project = new Project(UUID.randomUUID().toString(), UUID.randomUUID().toString(), UUID.randomUUID().toString() + ".com");
-        loginPage
-                .openPage()
-                .login(user);
+        loginSteps.login(user);
         projectPage
                 .creteProject(project)
                 .verifyThatNumberOfProjectsIncreased();

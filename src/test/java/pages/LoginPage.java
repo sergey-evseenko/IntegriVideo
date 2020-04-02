@@ -1,11 +1,13 @@
 package pages;
 
+import io.qameta.allure.Step;
 import models.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utils.AllureUtils;
 
 public class LoginPage extends BasePage {
 
@@ -27,9 +29,11 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Opening login page.")
     public LoginPage openPage() {
         driver.get("https://dev.integrivideo.com/login");
         isPageOpened();
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
@@ -50,9 +54,11 @@ public class LoginPage extends BasePage {
         return new ProjectPage(driver);
     }
 
+    @Step("Providing email and password and login!")
     public void login(User user) {
         writeEmail(user.getEmail());
         writePassword(user.getPassword());
+        AllureUtils.takeScreenshot(driver);
         ckickLogin();
     }
 

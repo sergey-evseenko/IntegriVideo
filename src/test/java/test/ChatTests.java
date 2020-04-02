@@ -1,12 +1,19 @@
 package test;
 
+import io.qameta.allure.Issue;
+import io.qameta.allure.Link;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 
 public class ChatTests extends BaseTest {
 
     String message = "AutoTests";
 
-    @Test
+    @Test(description = "Send one message.")
+    @Link("https://www.youtube.com/")
+    @Link("https://app.stage.flowhealthlabs.com/")
+    @Issue("FS-1898")
+    @TmsLink("FS-1899")
     public void sendMessage() {
         chatPage.openPage();
         chatPage.writeText("Test");
@@ -14,13 +21,13 @@ public class ChatTests extends BaseTest {
         chatPage.messageShouldExist(0, "Test");
     }
 
-    @Test
+    @Test(description = "Verify 'Invite' link.")
     public void verifyInviteLink() {
         chatPage.openPage();
         chatPage.clickInviteButton();
         chatPage.verifyBufferLink();
     }
-
+/*
     @Test
     public void sendMessageByEnter() {
         chatPage.openPage();
@@ -108,5 +115,5 @@ public class ChatTests extends BaseTest {
     public void runTest() {
         System.out.println(System.getProperty("userName"));
     }
-
+*/
 }
