@@ -1,10 +1,12 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utils.AllureUtils;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -27,19 +29,25 @@ public class ChatPage extends BasePage {
         return null;
     }
 
+    @Step("Open chat page.")
     public ChatPage openPage() {
         driver.get("https://dev.integrivideo.com/demo/chat/new");
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
+    @Step("Writing text: '{text}'.")
     public void writeText(String text) {
         driver.findElement(CHAT_INPUT).sendKeys(text);
+        AllureUtils.takeScreenshot(driver);
     }
 
+    @Step("Click 'Send' button")
     public void clickSend() {
         driver.findElement(By.cssSelector(".integri-chat-send-message")).click();
     }
 
+    @Step("Verify message.")
     public void messageShouldExist(int messageIndex, String text) {
         try {
             Thread.sleep(3000);
@@ -49,12 +57,15 @@ public class ChatPage extends BasePage {
         List<WebElement> message = driver.findElements(By.cssSelector(".integri-chat-message-text"));
         boolean isExist = message.get(messageIndex).getText().equals(text);
         assertTrue(isExist, "Message doesn't exist");
+        AllureUtils.takeScreenshot(driver);
     }
 
+    @Step("Click the link")
     public void clickInviteButton() {
         driver.findElement(By.id("invite-users-to-chat")).click();
     }
 
+    @Step("Verify the link")
     public void verifyBufferLink() {
         String currentLink = driver.getCurrentUrl();
         String copyLink = null;
