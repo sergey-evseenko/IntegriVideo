@@ -1,17 +1,15 @@
-/*
-package tests.base;
+package utils;
 
 import io.qameta.allure.Attachment;
-
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
 public class TestListener implements ITestListener {
@@ -38,8 +36,9 @@ public class TestListener implements ITestListener {
 
     @Attachment(value = "Last screen state", type = "image/png")
     private byte[] takeScreenshot(ITestResult iTestResult) {
+        ITestContext context = iTestResult.getTestContext();
         try {
-            return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
+            return ((TakesScreenshot) context.getAttribute("driver")).getScreenshotAs(OutputType.BYTES);
         } catch (NoSuchSessionException ex) {
             return null;
         } catch (IllegalStateException ex) {
@@ -52,4 +51,3 @@ public class TestListener implements ITestListener {
         return TimeUnit.MILLISECONDS.toSeconds(iTestResult.getEndMillis() - iTestResult.getStartMillis());
     }
 }
-*/
