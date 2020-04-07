@@ -10,6 +10,8 @@ import utils.CapabilitiesGenerator;
 
 import java.util.concurrent.TimeUnit;
 
+
+//@Listeners(tests.base.TestListener.class)
 public class BaseTest {
     ChatPage chatPage;
     SettingsModal settingsModal;

@@ -10,10 +10,9 @@ public class ChatTests extends BaseTest {
     String message = "AutoTests";
 
     @Test(description = "Send one message.")
-    @Link("https://www.youtube.com/")
-    @Link("https://app.stage.flowhealthlabs.com/")
-    @Issue("FS-1898")
-    @TmsLink("FS-1899")
+    @Link("https://app-stage.playershealthclaims.com/")
+    @Issue("PHC-2576")
+    @TmsLink("PHC-2576")
     public void sendMessage() {
         chatPage.openPage();
         chatPage.writeText("Test");
@@ -27,7 +26,7 @@ public class ChatTests extends BaseTest {
         chatPage.clickInviteButton();
         chatPage.verifyBufferLink();
     }
-/*
+
     @Test
     public void sendMessageByEnter() {
         chatPage.openPage();
@@ -115,5 +114,5 @@ public class ChatTests extends BaseTest {
     public void runTest() {
         System.out.println(System.getProperty("userName"));
     }
-*/
+
 }
