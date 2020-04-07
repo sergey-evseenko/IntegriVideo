@@ -8,11 +8,12 @@ import org.testng.annotations.Listeners;
 import pages.*;
 import steps.LoginSteps;
 import utils.CapabilitiesGenerator;
+import utils.TestListener;
 
 import java.util.concurrent.TimeUnit;
 
 
-@Listeners(tests.base.TestListener.class)
+@Listeners(TestListener.class)
 public class BaseTest {
     ChatPage chatPage;
     SettingsModal settingsModal;
