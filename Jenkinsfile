@@ -5,12 +5,18 @@ pipeline {
       // Install the Maven version configured as "M3" and add it to the path.
       maven "M3"
    }
+   parameters {
+    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+   }
+
 
    stages {
       stage('Build') {
          steps {
             // Get some code from a GitHub repository
-            git 'https://github.com/sergey-evseenko/IntegriVideo.git'
+            //git 'https://github.com/sergey-evseenko/IntegriVideo.git'
+
+            git branch: "${params.BRANCH}", url: 'https://github.com/dzmitryrak/IVJenkins'
 
             // Run Maven on a Unix agent.
             sh "mvn -Dmaven.test.failure.ignore=true clean -Dtest=ChatTests clean package"
