@@ -16,7 +16,6 @@
         <testng.version>7.0.0-beta1</testng.version>
         <aspectj.version>1.9.1</aspectj.version>
 
-
     </properties>
 
     <build>
@@ -67,6 +66,7 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
+
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
@@ -74,7 +74,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-            <scope>test</scope>
+
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
         <dependency>
