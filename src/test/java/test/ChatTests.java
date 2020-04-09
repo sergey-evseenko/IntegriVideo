@@ -29,9 +29,10 @@ public class ChatTests extends BaseTest {
     }
 
     @Test
-    public void sendMessageByEnter() {
+    public void sendMessageByEnter() throws InterruptedException {
         chatPage.openPage();
         chatPage.sedMessageByEnter(message);
+        Thread.sleep(1000);
         chatPage.verifyMessage(message);
     }
 
