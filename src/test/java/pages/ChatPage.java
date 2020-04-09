@@ -137,12 +137,14 @@ public class ChatPage extends BasePage {
 
     public void sendMessagesAndVerifyLimit(int limit) {
 
-        for (int i = 0; i < limit; i++) {
+        for (int i = 0; i < limit - 1; i++) {
             driver.findElement(By.cssSelector("textarea[placeholder='Start typing here']")).sendKeys("text");
             driver.findElement(By.cssSelector(".integri-chat-send-message")).click();
             wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".integri-chat-message-text"), i + 1));
         }
-        driver.findElement(By.cssSelector(".integri-button big-button"));
+        driver.findElement(By.cssSelector("textarea[placeholder='Start typing here']")).sendKeys("text");
+        driver.findElement(By.cssSelector(".integri-chat-send-message")).click();
+        driver.findElement(By.cssSelector(".integri-button.big-button"));
     }
 
     public void verifyLink(String linkText) {
