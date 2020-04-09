@@ -15,7 +15,6 @@ pipeline {
          steps {
             // Get some code from a GitHub repository
             //git 'https://github.com/sergey-evseenko/IntegriVideo.git'
-
             git branch: "${params.BRANCH}", url: 'https://github.com/dzmitryrak/IVJenkins'
 
             // Run Maven on a Unix agent.
