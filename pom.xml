@@ -34,10 +34,9 @@
                 <version>3.0.0-M4</version>
 
                 <configuration>
-                    <forkMode>never</forkMode>
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-                        -Xmx512m
+                        -Xmx256m
                     </argLine>
                     <useSystemClassLoader>false</useSystemClassLoader>
                 </configuration>
@@ -54,6 +53,7 @@
                 <artifactId>allure-maven</artifactId>
                 <version>2.10.0</version>
             </plugin>
+
         </plugins>
     </build>
 
