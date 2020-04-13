@@ -46,13 +46,13 @@ workflows:
   commit:
     jobs:
       - Sergey_Evseenko_Test
-  periodical:
-    triggers:
-      - schedule:
-          cron: "1 4,8,12 * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - Sergey_Evseenko_Test
+#  periodical:
+#    triggers:
+#      - schedule:
+#          cron: "1 4,8,12 * * *"
+#          filters:
+#            branches:
+#              only:
+#                - master
+#    jobs:
+#      - Sergey_Evseenko_Test
