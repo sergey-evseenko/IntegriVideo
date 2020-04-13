@@ -64,7 +64,7 @@ public class ChatTests extends BaseTest {
     }
 
     @Test
-    //@Ignore
+    @Ignore
     public void sendCode() {
         String code = "<html><body><p>test</p></body></html>";
         chatPage.openPage();
