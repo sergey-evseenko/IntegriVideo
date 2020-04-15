@@ -14,8 +14,8 @@ pipeline {
       stage('Build') {
          steps {
             // Get some code from a GitHub repository
-            git 'https://github.com/sergey-evseenko/IntegriVideo.git'
-            //git branch: "${params.BRANCH}", url: 'https://github.com/sergey-evseenko/IntegriVideo'
+            //git 'https://github.com/sergey-evseenko/IntegriVideo.git'
+            git branch: "${params.BRANCH}", url: 'https://github.com/sergey-evseenko/IntegriVideo'
 
             // Run Maven on a Unix agent.
             sh "mvn -Dmaven.test.failure.ignore=true clean -Dtest=ChatTests#sendMessage clean package"
